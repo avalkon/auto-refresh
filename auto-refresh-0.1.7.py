@@ -4,9 +4,7 @@ import tkinter as tk
 import time
 import threading
 from pynput.mouse import Button, Controller
-from pynput import keyboard
 from python_imagesearch.imagesearch import imagesearch
-from python_imagesearch.imagesearch import imagesearcharea
 from playsound3 import playsound
 
 status = 0 #0=stopped, 1=refreshing, 3=waiting, 4=submitting
