@@ -1,9 +1,9 @@
 # auto-refresh
 Python tool to automatically refresh, acquire and submit in Raterhub
 
-The installer installs all necessary dependencies. 
+The installer creates a venv, installs the necessary pip and apt dependencies and creates a .desktop file to access the program from the menu. The uninstaller removes the pip installed dependencies, but not the apt installed dependencies.
 
-To install on Linux:
+To install on Ubuntu-based Linux:
 
 cd ~/Downloads
 
