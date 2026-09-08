@@ -52,13 +52,14 @@ def auto_refresh():
     while get_status() == 1:
         if get_status() != 1:
             break
-        time.sleep(5)
+        time.sleep(2)
         nta = imagesearch("/opt/apps/auto-refresh/images/nta.png")
         if get_status() != 1:
             break
         if nta[0] != -1:
             nta_label.config(text="NTA")
             submit_label.config(text="Waiting")
+            time.sleep(5)
             mouse.position = (92, 65)
             mouse.click(Button.left)
         else:
