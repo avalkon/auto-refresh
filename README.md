@@ -11,7 +11,7 @@ git clone https://github.com/avalkon/auto-refresh.git auto-refresh
 
 cd auto-refresh
 
-sudo ./linuxinstall.sh
+sudo ./linux-install.sh
 
 I don't own a Windows or Mac machine, if someone would like to contribute, please do!
 
