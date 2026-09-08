@@ -59,7 +59,7 @@ def auto_refresh():
         if nta[0] != -1:
             nta_label.config(text="NTA")
             submit_label.config(text="Waiting")
-            time.sleep(5)
+            time.sleep(2)
             mouse.position = (92, 65)
             mouse.click(Button.left)
         else:
