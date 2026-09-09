@@ -103,7 +103,9 @@ def auto_submit():
         submit = imagesearch("/opt/apps/auto-refresh/images/submit.png", .995)
         submit2 = imagesearch("/opt/apps/auto-refresh/images/submit2.png", .995)
         submit3 = imagesearch("/opt/apps/auto-refresh/images/submit3.png", .99)
-        if submit[0] != -1 or submit2[0] != -1 or submit3[0] != -1:
+        submit4 = imagesearch("/opt/apps/auto-refresh/images/submit4.png", .995)
+        submit5 = imagesearch("/opt/apps/auto-refresh/images/submit5.png", .995)
+        if submit[0] != -1 or submit2[0] != -1 or submit3[0] != -1 or submit4[0] != -1 or submit5[0] != -1:
             submit_label.config(text="Submitting!")
             mouse.position = (115, 1017)
 #            mouse.click(Button.left)
