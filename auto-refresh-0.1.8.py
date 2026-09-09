@@ -41,7 +41,7 @@ def start_submit():
     set_status(4)
     threading.Thread(target=auto_submit, daemon=True).start()
 
-def stop_all():
+def stop_all(*args):
     set_status(0)
     nta_label.config(text="Stopped")
     submit_label.config(text="Stopped")
