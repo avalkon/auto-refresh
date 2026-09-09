@@ -1,4 +1,4 @@
-# ---Auto-Refresh v0.1.7 by avalkon---
+# ---Auto-Refresh v0.1.8 by avalkon---
 # ---Imports----
 import tkinter as tk
 import time
@@ -48,6 +48,10 @@ def stop_all():
 
 # ---Functions---
 
+def thread_count():
+    threading.active_count()
+    threads_label.config(text=threading.actice_count())
+
 def auto_refresh():
     while get_status() == 1:
         if get_status() != 1:
@@ -81,20 +85,36 @@ def auto_acquire():
             set_status(3)
             start_wait()
         else:
-            nta_label.config(text="Already acquired?")
+            nta_label.config(text="Already acquired")
             submit_label.config(text="Waiting")
             set_status(3)
             start_wait()
 
 def auto_wait():
-    while get_status() == 3:
-        if get_status() == 4:
-            time.sleep(5)
-        elif get_status() != 3:
-            break
-        else:
-            time.sleep(5)
-            nta_label.config(text="Task")
+    nta = imagesearch("/opt/apps/auto-refresh/images/nta.png")
+    acquire = imagesearch("/opt/apps/auto-refresh/images/acquire.png")
+    if nta[0] != -1:
+        set_status(1
+        threading.thread(target=auto_refresh(), daemon-True).start
+    else:
+        while get_status() == 3:
+            nta = imagesearch("/opt/apps/auto-refresh/images/nta.png")
+            acquire = imagesearch("/opt/apps/auto-refresh/images/acquire.png")
+            if get_status() != 3:
+                break
+            elif acquire[0]= != -1:
+                set_status(2)
+                if get_status == 2:
+                    threading.Thread(target=auto_acquire, daemon=True).start()
+                    break
+                elif nta[0]= != -1:
+                    set_status(1)
+                    if get_status() ==1:
+                        threading.Thread(target=auto_refresh, daemon=True).start()
+                        break
+            else:
+                time.sleep(5)
+                nta_label.config(text="Task")
 
 def auto_submit():
     while True:
@@ -118,6 +138,7 @@ def auto_submit():
             break
         else:
             if get_status() != 4:
+                submit_label.config(text="Interrupted")
                 break
             submit_label.config(text="Waiting to submit")
             time.sleep(2)
@@ -126,10 +147,10 @@ def auto_submit():
 # ---GUI---
 
 root = tk.Tk()
-root.title("Auto-Refresh v0.1.7")
+root.title("Auto-Refresh v0.1.8")
 root.minsize(313, 140)
 root.maxsize(500, 500)
-root.geometry("313x140+50+50")
+root.geometry("313x180+990+540")
 icon = tk.PhotoImage(file="/opt/apps/auto-refresh/images/ntaico.png")
 root.iconphoto(True, icon)
 
@@ -139,10 +160,14 @@ start_button = tk.Button(root, text="Start Auto-Refresh", width= 16, command=sta
 start_button.grid(row=0, column=0)
 
 stop_button = tk.Button(root, text="Stop", width= 16,  command=stop_all,)
+root.bind('<F12>', stop_all)
 stop_button.grid(row=2, column=0, columnspan=2)
 
 submit_button = tk.Button(root, text="Auto-Submit", width= 16, command=start_submit,)
 submit_button.grid(row=0, column=1)
+
+threads_button - tk.Button(root, text="Get Threadcount", width=16, command=threadcount)
+threads_button.grid(row=5, column=0)
 
 # ---Labels---
 
@@ -155,7 +180,10 @@ submit_label.grid(row=1, column=1)
 spacer = tk.Label(root, text="")
 spacer.grid(row=3)
 
-credits_label = tk.Label(root, text="Auto-Refresh v0.1.7, by avalkon")
-credits_label.grid(row=4, column=0, columnspan=2, sticky=tk.S)
+threads_label = tk.Label(root, text="Threadcount")
+threads_label.grid(row=4, column=1)
+
+credits_label = tk.Label(root, text="Auto-Refresh v0.1.8, by avalkon")
+credits_label.grid(row=5, column=0, columnspan=2, sticky=tk.S)
 
 root.mainloop()
