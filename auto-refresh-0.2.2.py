@@ -320,7 +320,7 @@ root.iconphoto(True, tk.PhotoImage(file=icon))
 root.after(1000, update_timers)
 #apparently this goes here. why the fork can't it stay up there with the rest of it's friends?!
 
-# Buttons n such
+# ---Buttons n such--- #
 
 refresh_button = tk.Button(root, text="Start Auto-Refresh", width=16, command=start_refresh)
 refresh_button.grid(row=0, column=0)
