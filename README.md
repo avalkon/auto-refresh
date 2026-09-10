@@ -22,16 +22,22 @@ relative now, so the program will run no matter where you put the folder.
 # What it does:
 Automatically refreshes on NTA, acquires on Acquire if available, and can submit based on timer position, without triggering 
 a third-party extension ping. 
+
 It does not currently perform any additional mouse movements to keep the extension awake, so keep that in mind. 
+
 The included images are based on a maximized Chrome window at a screen resolution of 1920x1080; if you use a different 
 resolution, you will need to edit your own photos to match. 
+
 The auto-submit needs some more tuning, it seems to work well on longer (7+ minutes) tasks, not as well yet on shorter ones. 
 Probably needs additional reference photos. 
+
 Auto refresh now recognizes NTA and Acquire if available immediately from any state(except stopped), so if you want to 
-submit and stop, you need to turn off the auto-refresh to not immediately grab another task
+submit and stop, you need to turn off the auto-refresh to not immediately grab another task.
+
 There is now a settings menu where you can turn off the sound, and enable or disable the auto-submit click. If disabled, 
 pressing the auto-submit button will still play a sound when it sees the appropriate timer position, which is useful for 
 both testing and just as a notification/reminder.
+
 You can now change what sound is played by putting your own sound into the sounds folder and modifying the config.ini in 
 any text editor, along with your own images if you need to change resolutions. You can also change the mouse positions 
 and delay times in the same file, as well as modifying the sensitivity of the image recognition. Instructions/descriptions 
