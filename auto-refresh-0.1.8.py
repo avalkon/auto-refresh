@@ -50,7 +50,7 @@ def stop_all(*args):
 
 def thread_count():
     threading.active_count()
-    threads_label.config(text=threading.actice_count())
+    threads_label.config(text=threading.active_count())
 
 def auto_refresh():
     while get_status() == 1:
@@ -94,24 +94,24 @@ def auto_wait():
     nta = imagesearch("/opt/apps/auto-refresh/images/nta.png")
     acquire = imagesearch("/opt/apps/auto-refresh/images/acquire.png")
     if nta[0] != -1:
-        set_status(1
-        threading.thread(target=auto_refresh(), daemon-True).start
+        set_status(1)
+        threading.Thread(target=auto_refresh, daemon=True).start()
     else:
         while get_status() == 3:
             nta = imagesearch("/opt/apps/auto-refresh/images/nta.png")
             acquire = imagesearch("/opt/apps/auto-refresh/images/acquire.png")
             if get_status() != 3:
                 break
-            elif acquire[0]= != -1:
+            elif acquire[0] != -1:
                 set_status(2)
-                if get_status == 2:
+                if get_status() == 2:
                     threading.Thread(target=auto_acquire, daemon=True).start()
                     break
-                elif nta[0]= != -1:
-                    set_status(1)
-                    if get_status() ==1:
-                        threading.Thread(target=auto_refresh, daemon=True).start()
-                        break
+            elif nta[0] != -1:
+                set_status(1)
+                if get_status() == 1:
+                    threading.Thread(target=auto_refresh, daemon=True).start()
+                    break
             else:
                 time.sleep(5)
                 nta_label.config(text="Task")
@@ -150,7 +150,7 @@ root = tk.Tk()
 root.title("Auto-Refresh v0.1.8")
 root.minsize(313, 140)
 root.maxsize(500, 500)
-root.geometry("313x180+990+540")
+root.geometry("313x170+990+540")
 icon = tk.PhotoImage(file="/opt/apps/auto-refresh/images/ntaico.png")
 root.iconphoto(True, icon)
 
@@ -159,14 +159,14 @@ root.iconphoto(True, icon)
 start_button = tk.Button(root, text="Start Auto-Refresh", width= 16, command=start_refresh,)
 start_button.grid(row=0, column=0)
 
+submit_button = tk.Button(root, text="Auto-Submit", width= 16, command=start_submit,)
+submit_button.grid(row=0, column=1)
+
 stop_button = tk.Button(root, text="Stop", width= 16,  command=stop_all,)
 root.bind('<F12>', stop_all)
 stop_button.grid(row=2, column=0, columnspan=2)
 
-submit_button = tk.Button(root, text="Auto-Submit", width= 16, command=start_submit,)
-submit_button.grid(row=0, column=1)
-
-threads_button - tk.Button(root, text="Get Threadcount", width=16, command=threadcount)
+threads_button = tk.Button(root, text="Get Threadcount", width=16, command=thread_count)
 threads_button.grid(row=5, column=0)
 
 # ---Labels---
