@@ -4,23 +4,56 @@
 import tkinter as tk
 import threading
 import time
+import configparser
 from pynput.mouse import Button, Controller
 from python_imagesearch.imagesearch import imagesearch
 from playsound3 import playsound
+from pathlib import Path
 
 # ---Configs--- #
+#These can be changed via the config.ini without needing to make changes to this file.
 
-mouse = Controller()
-nta = f"/opt/apps/auto-refresh/images/nta.png"
-acqimg = f"/opt/apps/auto-refresh/images/acquire.png"
+config_file = Path(__file__).parent / "config.ini"
+
+config = configparser.ConfigParser()
+config.read(config_file)
+
+def config_path(name):
+    path = Path(config["files"][name])
+    if path.is_absolute():
+        return path
+    return config_file.parent / path
+
+nta = config_path("nta")
+acqimg = config_path("acquire")
 timers = [
-    (f"/opt/apps/auto-refresh/images/submit.png", 0.995),
-    (f"/opt/apps/auto-refresh/images/submit2.png", 0.995),
-    (f"/opt/apps/auto-refresh/images/submit3.png", 0.990),
-    (f"/opt/apps/auto-refresh/images/submit4.png", 0.995),
-    (f"/opt/apps/auto-refresh/images/submit5.png", 0.990)]
-sound = f"/opt/apps/auto-refresh/sounds/sound1.mp3"
-icon = f"/opt/apps/auto-refresh/images/ntaico.png"
+    (config_path("submit1"), config.getfloat("confidence", "submit1")),
+    (config_path("submit2"), config.getfloat("confidence", "submit2")),
+    (config_path("submit3"), config.getfloat("confidence", "submit3")),
+    (config_path("submit4"), config.getfloat("confidence", "submit4")),
+    (config_path("submit5"), config.getfloat("confidence", "submit5")),
+]
+sound = config_path("sound")
+icon = config_path("icon")
+
+# ---Mouse positions--- #
+
+def get_position(name):
+    x, y = config["positions"][name].split(",")
+    return int(x), int(y)
+
+refpos = get_position("refresh")
+acqpos = get_position("acquire")
+subpos = get_position("submit")
+
+# ---Timing--- #
+
+refdel = config.getfloat("timing", "refresh")
+acqdel = config.getfloat("timing", "acquire")
+waitdel = config.getfloat("timing", "wait")
+subdel = config.getfloat("timing", "submit")
+
+# ---Status--- #
 
 stopped = 0
 refreshing = 1
@@ -28,14 +61,11 @@ acquiring = 2
 waiting = 3
 submitting = 4
 
+mouse = Controller()
 status = stopped
 sound_on = True
 auto_submit = False
 worker_thread = None
-
-refpos = (92, 65)
-acqpos = (115, 235)
-subpos = (115, 1017)
 
 # ---Definitions--- #
 
@@ -84,11 +114,11 @@ def worker():
 def refresh():
     label(nta_label, "Checking...")
     label(submit_label, "Waiting")
-    if not sleep(2, refreshing):
+    if not sleep(refdel, refreshing):
         return
     if found(nta):
         label(nta_label, "NTA")
-        if not sleep(2, refreshing):
+        if not sleep(refdel, refreshing):
             return
         click(refpos)
     else:
@@ -96,7 +126,7 @@ def refresh():
         set_status(acquiring)
 
 def acquire():
-    if not sleep(0.4, acquiring):
+    if not sleep(acqdel, acquiring):
         return
     if found(acqimg):
         label(nta_label, "Acquiring!")
@@ -119,21 +149,21 @@ def wait():
         set_status(acquiring)
         return
     label(nta_label, "Task")
-    sleep(5, waiting)
+    sleep(waitdel, waiting)
 
 def submit():
     if submit_found():
         label(submit_label, "Submitting!")
         if auto_submit:
             click(subpos)
-        if not sleep(0.4, submitting):
+        if not sleep(acqdel, submitting):
             return
         play_sound()
         set_status(refreshing)
 
     else:
         label(submit_label, "Waiting to submit")
-        if not sleep(2, submitting):
+        if not sleep(subdel, submitting):
             return
         label(submit_label, "Checking...")
 
