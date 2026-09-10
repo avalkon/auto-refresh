@@ -1,4 +1,4 @@
-# --- Auto-Refresh v0.2.0 by avalkon --- #
+# --- Auto-Refresh v0.2.2 by avalkon --- #
 #I know, I have issues with remembering how I was even naming stuff at any given hour. 
 #sucks, doesn't it? but at least it works. mostly.
 # ---Imports--- #
@@ -312,7 +312,7 @@ def open_settings():
     save_button.grid(row=3, column=0, columnspan=2)
 
 root = tk.Tk()
-root.title("Auto-Refresh v0.2.0")
+root.title("Auto-Refresh v0.2.2")
 root.geometry("328x230+990+540")
 root.minsize(328, 230)
 root.iconphoto(True, tk.PhotoImage(file=icon))
@@ -360,7 +360,7 @@ threads_label.grid(row=6, column=1)
 settings_button = tk.Button(root, text="Settings", width=16, command=open_settings)
 settings_button.grid(row=7, column=0, columnspan=2)
 
-credit_label = tk.Label(root, text="Auto-Refresh v0.2.0, by avalkon")
+credit_label = tk.Label(root, text="Auto-Refresh v0.2.2, by avalkon")
 credit_label.grid(row=8, column=0, columnspan=2)
 
 def close_program():
