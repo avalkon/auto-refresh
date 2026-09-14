@@ -47,7 +47,8 @@ subpos = get_position("submit")
 
 # ---Hours logging and other miscellanea--- #
 
-refdel = config.getfloat("timing", "refresh")
+refdel1 = config.getfloat("timing", "refresh")
+refdel2 = config.getfloat("timing", "refresh2")
 acqdel = config.getfloat("timing", "acquire")
 waitdel = config.getfloat("timing", "wait")
 subdel = config.getfloat("timing", "submit")
@@ -201,11 +202,11 @@ def refresh():
     global last_task_time
     label(nta_label, "Checking...")
     label(submit_label, "Waiting")
-    if not sleep(refdel, refreshing):
+    if not sleep(refdel1, refreshing):
         return
     if found(nta):
         label(nta_label, "NTA")
-        if not sleep(refdel, refreshing):
+        if not sleep(refdel2, refreshing):
             return
         click(refpos)
         acquire_time = None
