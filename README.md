@@ -1,5 +1,5 @@
 # auto-refresh v0.2.53
-Python tool to automatically refresh, acquire and submit in Raterhub.
+Python tool to automatically refresh, acquire and submit in Raterhub. See demo.png to see what it looks like.
 
 Automatically refreshes on NTA, acquires on Acquire if available, and can submit based on timer position, without triggering 
 a third-party extension ping. The auto-acquire is not quite as fast as a plugin can be, but it's probably faster than you can 
