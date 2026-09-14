@@ -14,6 +14,8 @@ mkdir /opt/apps/auto-refresh/sounds
 
 cp $SCRIPT_DIR/auto-refresh.sh /opt/apps/auto-refresh/auto-refresh.sh
 cp $SCRIPT_DIR/auto-refresh-0.2.53.py /opt/apps/auto-refresh/auto-refresh-0.2.53.py
+cp $SCRIPT_DIR/auto-refresh.sh /opt/apps/README.md /opt/apps/auto-refresh/README.md
+cp $SCRIPT_DIR/auto-refresh.sh /opt/apps/config.ini /opt/apps/auto-refresh/config.ini
 cp $SCRIPT_DIR/images/ntaico.png /opt/apps/auto-refresh/images/ntaico.png
 cp $SCRIPT_DIR/images/nta.ico /opt/apps/auto-refresh/images/nta.ico
 cp $SCRIPT_DIR/images/nta.png /opt/apps/auto-refresh/images/nta.png
