@@ -1,37 +1,51 @@
-# auto-refresh v0.2.53
-Python tool to automatically refresh, acquire and submit in Raterhub. See demo.png to see what it looks like.
+# auto-refresh v0.2.67
+Python tool to automatically refresh, acquire and submit in Raterhub. See demo.png to see what it looks like. Nothing is 
+ever sent off your computer.
 
-Automatically refreshes on NTA, acquires on Acquire if available, and can submit based on timer position, without triggering 
-a third-party extension ping. The auto-acquire is not quite as fast as a plugin can be, but it's probably faster than you can 
-manually click. At least if you're me. Auto-submit's click is disabled by default, change it in the settings menu 
-after testing that it works for you. The setting is not persistent, since I'm not using an external settings file.
+# Auto-Refresh and Acquire
 
-Logs time spent on each task, along with running totals for session length and daily task time, both logged 
-in a file and displayed onscreen. Task time logging only works if you click the auto-submit button or the Trigger 
-Submission Time button, but it works whether the auto-click itself is turned on or off. 
+Automatically refreshes on NTA, acquires on Acquire if available. The auto-acquire is not quite as fast as a plugin can 
+be, but it's probably faster than you can manually click. At least if you're me. Auto-acquire is not necessary for 
+time tracking if you manually trigger the acquire time.
 
-As a bonus, the totals can double as alcohol replacements when you compare your session time to task time! Yay nta. 
-Example of hours log included.
+# Auto-Submit
 
-It does not currently perform any additional mouse movements to keep the extension awake, so keep that in mind. 
-I'll work on that soon.
+ The auto-submit function is a time-tracker, notification sound, and auto-click. The click is disabled by default, 
+ change it in the settings menu after testing that it works for you. The click setting is not persistent, so you 
+ have to re-set it to on each time you open the program, or else modify the actual .py. I'll look into an external 
+ settings file to make settings persistent soon. Auto-Submit does not always recognize/trigger on short
+ (like 2 minutes) tasks. Probably needs more reference images. Auto-submit is not necessary for time tracking, if you 
+ manually trigger the submit time.
+
+# Time Logging
+
+The application Logs time spent on each task, along with running totals for session length and daily task time, 
+logged in a file(new file for each calendar day) and displayed onscreen. In order to use the time logging, you have to 
+either use the auto-acquire, or manually trigger the acquire time(button provided), and use auto-submit, or manually 
+trigger the submit time(button provided). The time tracking function of the auto-submit works whether the auto-click 
+itself is turned on or off. there is a button to export each days most recent Today's Tasks time to a separate 
+spreadsheet, for easy per-day tracking(example.totals.xlsx). Submit Time is also triggered by the Stop All button.
+
+As a bonus, the totals in the daily logs can double as depressants when you compare your session time to 
+task time! Yay nta.
+
+# Images
 
 The included images and mouse positions are based on a maximized Chrome window at a screen resolution of 1920x1080; 
 if you use a different resolution, you will need to edit your own images to match. Mouse positions, filenames, 
 image sensitivity, delay times and such can be modified in the config.ini file in any text editor. You can, of 
-course, add your own sounds, icon, etc.
-
-The auto-submit needs more tuning, it seems to work best on longer (6+ minutes) tasks, not quite as well yet on 
-shorter ones. Needs additional reference images. 
+course, add your own sounds, icon, etc. 
 
 Auto refresh recognizes NTA and Acquire if available immediately from any state(except stopped), so if you want to 
 submit and stop, you need to turn off the auto-refresh to not immediately grab another task.
 
-There is a settings panel where you can enable/disable the sound(enabled by default), enable/disable the auto-submit 
-click(disabled by default), and enable/disable the thread count button(disabled by default). If disabled, 
-pressing the auto-submit button will still play a sound and log the task/total time when it sees the appropriate timer 
-position, which is useful for both testing and just as a notification/reminder, if you don't actually want true 
-auto-submit. Test first.
+# Settings Panel
+
+In the settings panel, you can enable/disable the sound(enabled by default), enable/disable the auto-submit 
+click(disabled by default), choose which door auto-acquire prefers, turn on/off the mouse movement during auto-submit 
+waiting, and enable/disable the thread count button(disabled by default). If disabled, pressing the auto-submit button 
+will still play a sound and log the task/total time when it sees the appropriate timer position, which is useful for 
+both testing and just as a notification/reminder, if you don't actually want true auto-submit. Test first.
 
 You can change what sound is played by putting your own sound into the sounds folder and modifying the config.ini in 
 any text editor, along with your own images if you need to change resolutions. You can also change the mouse positions 
@@ -52,6 +66,12 @@ git clone https://github.com/avalkon/auto-refresh.git auto-refresh
 cd auto-refresh
 
 sudo ./linux-install.sh
+
+To uninstall:
+
+cd ~/Downloads/auto-refresh
+
+sudo ./linux-uninstall.sh
 
 # Windows
 I don't own a Windows machine, if someone would like to contribute, please do!
