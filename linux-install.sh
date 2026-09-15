@@ -13,7 +13,7 @@ mkdir /opt/apps/auto-refresh/images
 mkdir /opt/apps/auto-refresh/sounds
 
 cp $SCRIPT_DIR/auto-refresh.sh /opt/apps/auto-refresh/auto-refresh.sh
-cp $SCRIPT_DIR/auto-refresh-0.2.53.py /opt/apps/auto-refresh/auto-refresh-0.2.53.py
+cp $SCRIPT_DIR/auto-refresh-0.2.53.py /opt/apps/auto-refresh/auto-refresh-0.2.67.py
 cp $SCRIPT_DIR/auto-refresh.sh /opt/apps/README.md /opt/apps/auto-refresh/README.md
 cp $SCRIPT_DIR/auto-refresh.sh /opt/apps/config.ini /opt/apps/auto-refresh/config.ini
 cp $SCRIPT_DIR/images/ntaico.png /opt/apps/auto-refresh/images/ntaico.png
@@ -25,6 +25,8 @@ cp $SCRIPT_DIR/images/submit2.png /opt/apps/auto-refresh/images/submit2.png
 cp $SCRIPT_DIR/images/submit3.png /opt/apps/auto-refresh/images/submit3.png
 cp $SCRIPT_DIR/images/submit4.png /opt/apps/auto-refresh/images/submit4.png
 cp $SCRIPT_DIR/images/acquire.png /opt/apps/auto-refresh/images/acquire.png
+cp $SCRIPT_DIR/images/acquire2.png /opt/apps/auto-refresh/images/acquire2.png
+cp $SCRIPT_DIR/images/acquire3.png /opt/apps/auto-refresh/images/acquire3.png
 chmod +x /opt/apps/auto-refresh/auto-refresh.sh
 
 printf "[Desktop Entry]\n" > /usr/share/applications/auto-refresh.desktop
