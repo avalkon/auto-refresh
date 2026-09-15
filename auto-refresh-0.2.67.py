@@ -61,7 +61,6 @@ waitdel = config.getfloat("delays", "wait")
 subdel = config.getfloat("delays", "submit")
 wigdel = config.getfloat("delays", "wiggle")
 
-#log_file = Path(__file__).parent / "hours.log"
 log_folder = Path(__file__).parent / "logs"
 log_folder.mkdir(exist_ok=True)
 def get_logs():
@@ -72,7 +71,7 @@ session_start_time = None
 acquire_time = None
 last_task_time = None
 daily_total = 0
-daily_submit_count = 0
+task_count = 0
 session_running = False
 mouse = Controller()
 sound_on = True
@@ -106,7 +105,7 @@ def load_daily_stats():
     today = time.strftime("%Y-%m-%d")
     log_file = get_logs()
     daily_total = 0
-    daily_submit_count = 0
+    task_count = 0
     if log_file.exists():
         with open(log_file, "r") as f:
             for line in f:
@@ -114,17 +113,17 @@ def load_daily_stats():
                     continue
                 if "Task #" not in line:
                     continue
-                daily_submit_count += 1
+                task_count += 1
                 daily_text = (line.split("Today's Tasks': ")[1].split(" | ")[0])
                 hours, minutes, seconds = map(int, daily_text.split(":"))
                 daily_total = (hours * 3600 + minutes * 60 + seconds)
-    return daily_total, daily_submit_count
-daily_total, daily_submit_count = load_daily_stats()
+    return daily_total, task_count
+daily_total, task_count = load_daily_stats()
 
 def log_submit():
     global last_task_time
     global daily_total
-    global daily_submit_count
+    global task_count
     global acquire_time
     now = time.monotonic()
     if acquire_time is not None:
@@ -133,9 +132,9 @@ def log_submit():
     else:
         acquire_text = "--:--:--"
     if last_task_time is not None:
-        submit_elapsed = now - last_task_time
-        daily_total += submit_elapsed
-        submit_text = format_elapsed(submit_elapsed)
+        task_elapsed = now - last_task_time
+        daily_total += task_elapsed
+        submit_text = format_elapsed(task_elapsed)
     else:
         submit_text = "--:--:--"
     if session_start_time is not None:
@@ -143,10 +142,10 @@ def log_submit():
         session_text = format_elapsed(session_elapsed)
     else:
         session_text = "--:--:--"
-    daily_submit_count += 1
+    task_count += 1
     daily_text = format_elapsed(daily_total)
     log_hours(
-        f"Task #{daily_submit_count} | "
+        f"Task #{task_count} | "
         f"Since Acquired: {acquire_text} | "
         f"Task Time: {submit_text} | "
         f"Today's Tasks': {daily_text} | "
@@ -169,7 +168,7 @@ def update_timers():
     else:
         task_timer_label.config(text="Task Time: --:--:--")
     daily_total_label.config(text=f"Today's Tasks': {format_elapsed(daily_total)}")
-    daily_submit_count_label.config(text=f"Tasks: {daily_submit_count}")
+    task_count_label.config(text=f"Tasks: {task_count}")
     root.after(1000, update_timers)
 
 def update_xl():
@@ -486,8 +485,8 @@ acquire_timer_label.grid(row=2, column=1)
 task_timer_label = tk.Label(root, text="Task Time: 00:00:00", width=20)
 task_timer_label.grid(row=3, column=0)
 
-daily_submit_count_label = tk.Label(root, text=f"Today Submits: {daily_submit_count}", width=25)
-daily_submit_count_label.grid( row=3, column=1, columnspan=2)
+task_count_label = tk.Label(root, text=f"Today Submits: {task_count}", width=25)
+task_count_label.grid( row=3, column=1, columnspan=2)
 
 daily_total_label = tk.Label(root, text=f"Today's Tasks': {format_elapsed(daily_total)}", width=25)
 daily_total_label.grid(row=4, column=0, columnspan=2)
