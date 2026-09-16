@@ -4,18 +4,16 @@ ever sent off your computer.
 
 # Auto-Refresh and Acquire
 
-Automatically refreshes on NTA, acquires on Acquire if available. The auto-acquire is not quite as fast as a plugin can 
+Automatically refreshes on NTA, acquires on Acquire if available. The auto-acquire is not quite as fast as an extension can 
 be, but it's probably faster than you can manually click. At least if you're me. Auto-acquire is not necessary for 
 time tracking if you manually trigger the acquire time.
 
 # Auto-Submit
 
  The auto-submit function is a time-tracker, notification sound, and auto-click. The click is disabled by default, 
- change it in the settings menu after testing that it works for you. The click setting is not persistent, so you 
- have to re-set it to on each time you open the program, or else modify the actual .py. I'll look into an external 
- settings file to make settings persistent soon. Auto-Submit does not always recognize/trigger on short
- (like 2 minutes) tasks. Probably needs more reference images. Auto-submit is not necessary for time tracking, if you 
- manually trigger the submit time.
+ change it in the settings menu after testing that it works for you. Auto-Submit does not 
+ always recognize/trigger on short(like 2 minutes) tasks. Probably needs more reference images. Auto-submit 
+ is not necessary for time tracking, if you  manually trigger the submit time.
 
 # Time Logging
 
@@ -45,7 +43,9 @@ In the settings panel, you can enable/disable the sound(enabled by default), ena
 click(disabled by default), choose which door auto-acquire prefers, turn on/off the mouse movement during auto-submit 
 waiting, and enable/disable the thread count button(disabled by default). If disabled, pressing the auto-submit button 
 will still play a sound and log the task/total time when it sees the appropriate timer position, which is useful for 
-both testing and just as a notification/reminder, if you don't actually want true auto-submit. Test first.
+both testing and just as a notification/reminder, if you don't actually want true auto-submit. Test first. You can 
+also set times for all of the delays here. Any settings saved in the settings panel are persistent, so they are the same 
+next time you open the program as well.
 
 You can change what sound is played by putting your own sound into the sounds folder and modifying the config.ini in 
 any text editor, along with your own images if you need to change resolutions. You can also change the mouse positions 
