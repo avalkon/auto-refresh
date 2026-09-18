@@ -1,4 +1,4 @@
-# auto-refresh v0.2.69
+# auto-refresh v0.2.70
 Python tool to automatically refresh, acquire and submit in Raterhub. See demo.png and demo2.png to see what it looks like. 
 Nothing is ever sent off your computer.
 
