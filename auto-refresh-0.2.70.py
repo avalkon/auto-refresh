@@ -1,4 +1,4 @@
-# ---Auto-Refresh v0.2.69 by avalkon--- #
+# ---Auto-Refresh v0.2.70 by avalkon--- #
 #I know, I have issues with remembering how I was even naming stuff at any given hour.
 #sucks, doesn't it? but at least it works. mostly.
 import tkinter as tk
@@ -58,29 +58,37 @@ def save_config(section, key, value):
     with open(config_file, "w") as f:
         f.writelines(lines)
 
-# ---Files--- #
-
 def config_path(name):
     path = Path(config["files"][name])
     if path.is_absolute():
         return path
     return config_file.parent / path
 
-nta = config_path("nta")
-acqimg = config_path("acquire")
-acq2img = config_path("acquire2")
-acq3img = config_path("acquire3")
-timers = [
-    (config_path("submit1"), config.getfloat("confidence", "submit1")),
-    (config_path("submit2"), config.getfloat("confidence", "submit2")),
-    (config_path("submit3"), config.getfloat("confidence", "submit3")),
-    (config_path("submit4"), config.getfloat("confidence", "submit4")),
-    (config_path("submit5"), config.getfloat("confidence", "submit5")),]
+operating_system = config.get("settings", "operating_system", fallback="Linux")
+
+def load_image_set():
+    global nta
+    global acqimg
+    global acq2img
+    global acq3img
+    global timers
+    prefix = operating_system.lower()
+    nta = config_path(f"{prefix}_nta")
+    acqimg = config_path(f"{prefix}_acquire")
+    acq2img = config_path(f"{prefix}_acquire2")
+    acq3img = config_path(f"{prefix}_acquire3")
+    timers = [
+        (config_path(f"{prefix}_submit1"), config.getfloat("confidence", "submit1")),
+        (config_path(f"{prefix}_submit2"), config.getfloat("confidence", "submit2")),
+        (config_path(f"{prefix}_submit3"), config.getfloat("confidence", "submit3")),
+        (config_path(f"{prefix}_submit4"), config.getfloat("confidence", "submit4")),
+        (config_path(f"{prefix}_submit5"), config.getfloat("confidence", "submit5")),]
+
+load_image_set()
+
+
 sound = config_path("sound")
 icon = config_path("icon")
-
-# ---Mouse positions--- #
-#this is all so you could have a config file. it was all tidier when I hardcoded filepaths.
 
 def get_position(name):
     x, y = config["positions"][name].split(",")
@@ -98,8 +106,6 @@ auto_submit = config.getboolean("settings", "auto_submit", fallback=False)
 show_threads = config.getboolean("settings", "show_threads", fallback=False)
 preferred_door = config.getint("settings", "preferred_door", fallback=1)
 mouse_move = config.getboolean("settings", "mouse_move", fallback=True)
-
-# ---Hours logging and other miscellanea--- #
 
 refdel1 = config.getfloat("delays", "refresh")
 refdel2 = config.getfloat("delays", "refresh2")
@@ -473,11 +479,11 @@ def open_settings():
     global waitdel
     global subdel
     global wigdel
-
+    global operating_system
     window = tk.Toplevel(root)
     window.title("Settings")
-    window.geometry("260x400")
-    window.minsize(260, 400)
+    window.geometry("260x425")
+    window.minsize(260, 425)
     settings_label = tk.Label(window, text="Settings")
     settings_label.grid(row=0, column=0, columnspan=2)
 
@@ -516,41 +522,48 @@ def open_settings():
     momove_menu.config(width=3)
     momove_menu.grid(row=5, column=1)
 
+    os_var = tk.StringVar(value=operating_system)
+    os_label = tk.Label(window, text="Operating System:")
+    os_label.grid(row=6, column=0, sticky="e")
+    os_menu = tk.OptionMenu(window, os_var, "Linux", "Win10")
+    os_menu.config(width=3)
+    os_menu.grid(row=6, column=1)
+
     refdel1_var = tk.StringVar(value=str(refdel1))
     ref1_label = tk.Label(window, text="Refresh 1 Delay (sec)")
-    ref1_label.grid(row=6, column=0, sticky="e")
+    ref1_label.grid(row=7, column=0, sticky="e")
     ref1_entry = tk.Entry(window, width=7, textvariable=refdel1_var)
-    ref1_entry.grid(row=6, column=1)
+    ref1_entry.grid(row=7, column=1)
 
     refdel2_var = tk.StringVar(value=str(refdel2))
     ref2_label = tk.Label(window, text="Refresh 2 Delay (sec)")
-    ref2_label.grid(row=7, column=0, sticky="e")
+    ref2_label.grid(row=8, column=0, sticky="e")
     ref2_entry = tk.Entry(window, width=7, textvariable=refdel2_var)
-    ref2_entry.grid(row=7, column=1)
+    ref2_entry.grid(row=8, column=1)
 
     acqdel_var = tk.StringVar(value=str(acqdel))
     acq_label = tk.Label(window, text="Acquire Delay (sec)")
-    acq_label.grid(row=8, column=0, sticky="e")
+    acq_label.grid(row=9, column=0, sticky="e")
     acq_entry = tk.Entry(window, width=7, textvariable=acqdel_var)
-    acq_entry.grid(row=8, column=1)
+    acq_entry.grid(row=9, column=1)
 
     waitdel_var = tk.StringVar(value=str(waitdel))
     wait_label = tk.Label(window, text="Wait Delay (sec)")
-    wait_label.grid(row=9, column=0, sticky="e")
+    wait_label.grid(row=10, column=0, sticky="e")
     wait_entry = tk.Entry(window, width=7, textvariable=waitdel_var)
-    wait_entry.grid(row=9, column=1)
+    wait_entry.grid(row=10, column=1)
 
     subdel_var = tk.StringVar(value=str(subdel))
     sub_label = tk.Label(window, text="Submit Delay (sec)")
-    sub_label.grid(row=10, column=0, sticky="e")
+    sub_label.grid(row=11, column=0, sticky="e")
     sub_entry = tk.Entry(window, width=7, textvariable=subdel_var)
-    sub_entry.grid(row=10, column=1)
+    sub_entry.grid(row=11, column=1)
 
     wigdel_var = tk.StringVar(value=str(wigdel))
     wig_label = tk.Label(window, text="Wiggle Delay (sec)")
-    wig_label.grid(row=11, column=0, sticky="e")
+    wig_label.grid(row=12, column=0, sticky="e")
     wig_entry = tk.Entry(window, width=7, textvariable=wigdel_var)
-    wig_entry.grid(row=11, column=1)
+    wig_entry.grid(row=12, column=1)
 
     def save():
         global sound_on
@@ -558,6 +571,7 @@ def open_settings():
         global show_threads
         global preferred_door
         global mouse_move
+        global operating_system
         global refdel1
         global refdel2
         global acqdel
@@ -569,6 +583,7 @@ def open_settings():
         show_threads = threads_var.get() == "On"
         preferred_door = int(door_var.get())
         mouse_move = momove_var.get() == "On"
+        operating_system = os_var.get()
         refdel1 = float(refdel1_var.get())
         refdel2 = float(refdel2_var.get())
         acqdel = float(acqdel_var.get())
@@ -580,6 +595,8 @@ def open_settings():
         save_config("settings", "show_threads", show_threads)
         save_config("settings", "preferred_door", preferred_door)
         save_config("settings", "mouse_move", mouse_move)
+        save_config("settings", "operating_system", operating_system)
+        load_image_set()
         save_config("delays", "refresh", refdel1)
         save_config("delays", "refresh2", refdel2)
         save_config("delays", "acquire", acqdel)
@@ -594,10 +611,10 @@ def open_settings():
             threads_label.grid_remove()
         window.destroy()
     save_button = tk.Button(window, text="Save", width=16, command=save)
-    save_button.grid(row=12, column=0, columnspan=2)
+    save_button.grid(row=13, column=0, columnspan=2)
 
 root = tk.Tk()
-root.title("Auto-Refresh v0.2.69")
+root.title("Auto-Refresh v0.2.70")
 root.geometry("337x248+990+540")
 root.minsize(337, 248)
 root.iconphoto(True, tk.PhotoImage(file=str(icon)))
@@ -663,7 +680,7 @@ settings_button.grid(row=6, column=1)
 export_button = tk.Button(root, text="Update Spreadsheet", width=16, command=update_xl)
 export_button.grid(row=7, column=0, columnspan=2)
 
-credit_label = tk.Label(root, text="Auto-Refresh v0.2.69, by avalkon")
+credit_label = tk.Label(root, text="Auto-Refresh v0.2.70, by avalkon")
 credit_label.grid(row=8, column=0, columnspan=2)
 
 thread_button = tk.Button(root, text="Get Threadcount", width=16, command=checkthreads)
