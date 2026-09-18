@@ -1,4 +1,4 @@
-# ---Auto-Refresh v0.2.69 by avalkon--- #
+# ---Auto-Refresh v0.2.70 by avalkon--- #
 #I know, I have issues with remembering how I was even naming stuff at any given hour.
 #sucks, doesn't it? but at least it works. mostly.
 import tkinter as tk
@@ -614,7 +614,7 @@ def open_settings():
     save_button.grid(row=13, column=0, columnspan=2)
 
 root = tk.Tk()
-root.title("Auto-Refresh v0.2.69")
+root.title("Auto-Refresh v0.2.70")
 root.geometry("337x248+990+540")
 root.minsize(337, 248)
 root.iconphoto(True, tk.PhotoImage(file=str(icon)))
@@ -680,7 +680,7 @@ settings_button.grid(row=6, column=1)
 export_button = tk.Button(root, text="Update Spreadsheet", width=16, command=update_xl)
 export_button.grid(row=7, column=0, columnspan=2)
 
-credit_label = tk.Label(root, text="Auto-Refresh v0.2.69, by avalkon")
+credit_label = tk.Label(root, text="Auto-Refresh v0.2.70, by avalkon")
 credit_label.grid(row=8, column=0, columnspan=2)
 
 thread_button = tk.Button(root, text="Get Threadcount", width=16, command=checkthreads)
