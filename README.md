@@ -1,6 +1,6 @@
 # auto-refresh v0.2.70
 Python tool to automatically refresh, acquire and submit in Raterhub. See demo.png and demo2.png to see what it looks like. 
-Nothing is ever sent off your computer.
+Nothing is ever sent off your computer. The settings menu now enables switching between operating system image sets.
 
 # Auto-Refresh and Acquire
 Automatically refreshes on NTA, acquires on Acquire if available. The auto-acquire is not quite as fast as an extension can 
