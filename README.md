@@ -74,21 +74,37 @@ sudo ./linux-uninstall.sh
 # Windows
 I don't own a Windows machine, if someone would like to contribute, please do!
 
-The .py itself should work fine on all platforms, you just have to set it up manually. The called filepaths are all 
-relative, so the program will run no matter where you put the folder. Basically:
+The .py itself should work fine on all platforms, you just have to set it up manually, and possibly add your own images. The 
+called filepaths are all relative, so the program will run no matter where you put the venv. There are images included for 
+stock chrome on windows 10, I'm not sure if Windows 11 is similar enough to work, or any other custom effects you may have. Basically:
 
+Click the code button at the top of this page, then download zip. Unzip.
+
+from https://www.python.org/downloads/release/pymanager-263/
 Install Python 
 
-Create a venv
+Create a venv:
+Open the command prompt (search 'command' in the start menu) then type:
 
-pip install the contents of the requirements.txt file
+python -m venv auto-refresh.venv
+auto-refresh.venv\Scripts\activate
+cd auto-refresh.venv
 
-Copy the entire auto-refresh folder into the venv
+Copy the contents of the unzipped folder into the venv folder you created (c:\users\yourname\auto-refresh.venv), along with your own cropped
+images if necessary. You can run the program as-is first to see if the included ones work for you, of course.
+pip install the contents of the requirements.txt file:
 
-Run the .py file from the venv
+pip install -r requirements.txt
+
+Run the .py file from the venv:
+
+python auto-refresh-0.2.69.py
 
 # Mac:
-Same problem, I don't own a Mac either, but the install should be basically the same as Windows.
+Same problem, I don't own a Mac either, but the install should be basically the same as Windows. Install python, create venv, activate venv, 
+pip install requirements, run program. You will 100% need to gather and crop your own screenshots for the various functions. Just take a look 
+at the images in the images folder, and crop your own to match. And add them here, if you like, properly named, of course! I can then add your 
+operating system to the menu.
 
 # Why not just use an extension?:
 https://segin.strangled.net/are-they-tracking-us.html
