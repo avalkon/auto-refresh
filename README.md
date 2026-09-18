@@ -87,7 +87,7 @@ Open the unzipped folder, double click win10-install.bat
 This should create a venv and install the necessary dependencies. To run the program, double click win10-run.bat.
 You can create a desktop shortcut and add "%AppData%\auto-refresh.venv\win10-run.bat" as the path. After creating it, 
 you can change the icon by right clicking the shortcut, and changing the icon in the "shortcut" tab. The included icon
-will be at C:\Users\yourname\AppData\Roaming\auto-refresh.venv\images . in the same tab, you can set Run to minimized 
+will be at C:\Users\yourname\AppData\Roaming\auto-refresh.venv\images . In the same tab, you can set Run to minimized 
 to avoid seeing the command prompt. If someone has a better method of activating the venv and running the program 
 outside of the provided .bat, feel free to add it.
 
@@ -118,7 +118,7 @@ To run later:
 python %AppData%\auto-refresh.venv\auto-refresh-0.2.70
 
 # Mac:
-Same problem, I don't own a Mac either, but the install should be basically the same as Windows. Install python, create venv, activate venv, 
+Same problem, I don't own a Mac either, but the install should be basically the same as a manual Windows install. Install python, create venv, activate venv, 
 pip install requirements, run program. You will 100% need to gather and crop your own screenshots for the various functions. Just take a look 
 at the images in the images folder, and crop your own to match. And add them here, if you like, properly named, of course! I can then add your 
 operating system to the menu.
