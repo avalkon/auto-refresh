@@ -526,7 +526,7 @@ def open_settings():
     os_label = tk.Label(window, text="Operating System:")
     os_label.grid(row=6, column=0, sticky="e")
     os_menu = tk.OptionMenu(window, os_var, "Linux", "Win10")
-    os_menu.config(width=7)
+    os_menu.config(width=3)
     os_menu.grid(row=6, column=1)
 
     refdel1_var = tk.StringVar(value=str(refdel1))
