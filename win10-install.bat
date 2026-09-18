@@ -8,6 +8,7 @@ copy %0\..\auto-refresh-0.2.70.py %AppData%\auto-refresh.venv
 copy %0\..\config.ini %AppData%\auto-refresh.venv
 copy %0\..\requirements.txt %AppData%\auto-refresh.venv
 copy %0\..\win10-run.bat %AppData%\auto-refresh.venv
+copy %0\..\win10-uninstall.bat %AppData%\auto-refresh.venv
 call %AppData%\auto-refresh.venv\Scripts\activate.bat
 python -m pip install -r %AppData%\auto-refresh.venv\requirements.txt
 call %AppData%\auto-refresh.venv\Scripts\deactivate.bat
