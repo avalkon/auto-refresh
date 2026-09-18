@@ -117,6 +117,8 @@ To run later:
 %AppData%\auto-refresh.venv\Scripts\activate
 python %AppData%\auto-refresh.venv\auto-refresh-0.2.70
 
+To uninstall, double click win10-uninstall.bat
+
 # Mac:
 Same problem, I don't own a Mac either, but the install should be basically the same as a manual Windows install. Install python, create venv, activate venv, 
 pip install requirements, run program. You will 100% need to gather and crop your own screenshots for the various functions. Just take a look 
