@@ -80,6 +80,7 @@ or any other custom effects you may have. The easy way, which should work perfec
 Click the code button at the top of this page, then download zip. Unzip.
 
 from https://www.python.org/downloads/release/pymanager-263/
+
 Install Python 
 
 Open the unzipped folder, double click win10-install.bat
@@ -94,14 +95,19 @@ outside of the provided .bat, feel free to add it.
 ---If the install file does not work for some reason, you can do things the manual way:---
 
 Create a venv:
+
 Open the command prompt (search 'command' in the start menu) then type:
 
 python -m venv %AppData%\auto-refresh.venv
+
 auto-refresh.venv\Scripts\activate
+
 cd %AppData%\auto-refresh.venv
 
 Copy the contents of the unzipped folder into the venv folder you created 
+
 (c:\users\yourname\AppData\Roaming\auto-refresh.venv), 
+
 along with your own cropped images if necessary. You can run the program as-is first to see if the included 
 ones work for you, of course.
 
@@ -114,7 +120,9 @@ Run the .py file from the venv:
 python auto-refresh-0.2.70.py
 
 To run later:
+
 %AppData%\auto-refresh.venv\Scripts\activate
+
 python %AppData%\auto-refresh.venv\auto-refresh-0.2.70
 
 To uninstall, double click win10-uninstall.bat
