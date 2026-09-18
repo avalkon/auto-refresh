@@ -111,7 +111,7 @@ pip install -r requirements.txt
 
 Run the .py file from the venv:
 
-python auto-refresh-0.2.69.py
+python auto-refresh-0.2.70.py
 
 To run later:
 %AppData%\auto-refresh.venv\Scripts\activate
