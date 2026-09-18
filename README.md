@@ -72,26 +72,39 @@ cd ~/Downloads/auto-refresh
 sudo ./linux-uninstall.sh
 
 # Windows
-I don't own a Windows machine, if someone would like to contribute, please do!
+I managed to pull some images from a Windows 10 computer, and test the installation and operation mentioned below.
 
-The .py itself should work fine on all platforms, you just have to set it up manually, and possibly add your own images. The 
-called filepaths are all relative, so the program will run no matter where you put the venv. There are images included for 
-stock chrome on windows 10, I'm not sure if Windows 11 is similar enough to work, or any other custom effects you may have. Basically:
+There are images included for stock chrome on windows 10, I'm not sure if Windows 11 is similar enough to work, 
+or any other custom effects you may have. The easy way, which should work perfectly fine on win 10 and presumably 11:
 
 Click the code button at the top of this page, then download zip. Unzip.
 
 from https://www.python.org/downloads/release/pymanager-263/
 Install Python 
 
+Open the unzipped folder, double click win10-install.bat
+
+This should create a venv and install the necessary dependencies. To run the program, double click win10-run.bat.
+You can create a desktop shortcut and add "%AppData%\auto-refresh.venv\win10-run.bat" as the path. After creating it, 
+you can change the icon by right clicking the shortcut, and changing the icon in the "shortcut" tab. The included icon
+will be at C:\Users\yourname\AppData\Roaming\auto-refresh.venv\images . in the same tab, you can set Run to minimized 
+to avoid seeing the command prompt. If someone has a better method of activating the venv and running the program 
+outside of the provided .bat, feel free to add it.
+
+---If the install file does not work for some reason, you can do things the manual way:---
+
 Create a venv:
 Open the command prompt (search 'command' in the start menu) then type:
 
-python -m venv auto-refresh.venv
+python -m venv %AppData%\auto-refresh.venv
 auto-refresh.venv\Scripts\activate
-cd auto-refresh.venv
+cd %AppData%\auto-refresh.venv
 
-Copy the contents of the unzipped folder into the venv folder you created (c:\users\yourname\auto-refresh.venv), along with your own cropped
-images if necessary. You can run the program as-is first to see if the included ones work for you, of course.
+Copy the contents of the unzipped folder into the venv folder you created 
+(c:\users\yourname\AppData\Roaming\auto-refresh.venv), 
+along with your own cropped images if necessary. You can run the program as-is first to see if the included 
+ones work for you, of course.
+
 pip install the contents of the requirements.txt file:
 
 pip install -r requirements.txt
@@ -99,6 +112,10 @@ pip install -r requirements.txt
 Run the .py file from the venv:
 
 python auto-refresh-0.2.69.py
+
+To run later:
+%AppData%\auto-refresh.venv\Scripts\activate
+python %AppData%\auto-refresh.venv\auto-refresh-0.2.70
 
 # Mac:
 Same problem, I don't own a Mac either, but the install should be basically the same as Windows. Install python, create venv, activate venv, 
