@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="https://img.shields.io/github/downloads/avalkon/auto-refresh/total?label=Downloads" alt="Downloads" />
+  <img src="https://img.shields.io/badge/Windows-supported-0078D6?logo=windows&logoColor=white" alt="Windows" />
+  <img src="https://img.shields.io/badge/Linux-supported-FCC624?logo=linux&logoColor=white" alt="Linux" />
+</p>
+
 # auto-refresh v0.2.70
 Python tool to automatically refresh, acquire and submit in Raterhub. See demo.png and demo2.png to see what it looks like. 
 Nothing is ever sent off your computer. The settings menu now enables switching between operating system image sets.
